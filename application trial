@@ -1,0 +1,30 @@
+var ldap = require('LDAP');
+var ldapObj = new ldap({ uri: 'ldap://your_server', version: 3});
+
+//check your connection
+ldapObj.open(function(err) {
+    if (err) {
+       throw new Error('Connection problem occured!');
+    }
+    console.log("Connected to ldap");
+
+});
+
+//Search
+search_options = {
+    base: '',
+    scope: '',
+    filter: '',
+    attrs: ''
+}
+
+ldapObj.search(search_options, function(err, data){
+   if (err) {
+      throw new Error('Search filed');
+   } else {
+      console.log("Search result:" + JSON.stringify(data))
+   }
+
+});
+
+
